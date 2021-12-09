@@ -1,0 +1,9 @@
+.logForm{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    border: black solid 1px;
+    margin:0 auto;
+    padding: 20px;
+}
