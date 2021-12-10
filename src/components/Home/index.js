@@ -73,10 +73,10 @@ const Home = () => {
         <>
         <Header/>
         <Routes>
-            <Route exact path="/" element={<Explore posts={posts} />}/>
+            <Route exact path="/" element={<Explore posts={posts} getAll={getAll} />}/>
             <Route exact path="/home" element={<UserPosts />}/>
             <Route exact path="/profile" element={<Profile />}/>
-            <Route exact path="/add" element={<AddPost getAll={getAll} />}/>
+            <Route exact path="/add" element={<AddPost getAll={getAll}  posts={posts} />}/>
           </Routes>
           <Menu/>
         </>

@@ -1,8 +1,20 @@
+.flexRow{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 50px;
+}
 .menu{
     width: 100%;
     position: fixed;
     bottom: 0;
+    background-color: lavenderblush;
+    border-top: 1px solid rgb(216, 214, 214);
+    z-index: 99;
+  
 }
 .stk{
     position:sticky;
+  
 }

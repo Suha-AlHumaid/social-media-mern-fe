@@ -2,4 +2,10 @@ body{
     margin: 0 auto;
     box-sizing: border-box;
     width: 100%;
+   
+}
+a{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }

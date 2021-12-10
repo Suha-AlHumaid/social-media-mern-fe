@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
-
 import "./style.css"
-const AddPost = ({getAll}) => {
+import { Navigate } from "react-router";
+import { Link ,useNavigate} from "react-router-dom";
+import { storage } from "../firebase";
+const AddPost = ({getAll , posts}) => {
     // /post
-    const [discription, setDiscription] = useState("hihhihi");
-    const [avatar, setAvatar] = useState("hihhh");
-    const [ title, setTitle] = useState(" taass");
+    const [discription, setDiscription] = useState("");
+    const [avatar, setAvatar] = useState("");
+    const [ title, setTitle] = useState("");
     const [post,setPost]=useState(null)
-
+    const [url, setUrl] = useState(
+        "https://aqaarplus.com/assets/uploads/default.png"
+      );
+    const [message, setMessage] = useState("");
+    const [progress, setProgress] = useState(0);
+    const navigate = useNavigate();
     const state = useSelector((state) => {
       return {
         reducerLog: state.reducerLog,
@@ -22,7 +29,7 @@ const AddPost = ({getAll}) => {
             `${process.env.REACT_APP_BASE_URL}/post`,
             {
                 discription,
-                avatar,
+                avatar: url,
                 title,
 
             },
@@ -33,18 +40,71 @@ const AddPost = ({getAll}) => {
             }
           );
           setPost(result.data)
+        
           getAll()
+          navigate("/home");
         }catch (error){
             console.log(error);
         }
     }
+    const handleChange = (e) => {
+        if (e.target.files[0]) {
+          setAvatar(e.target.files[0]);
+        }
+      };
+    const handleUpload = () => {
+        const uploadTask = storage.ref(`images/${avatar.name}`).put(avatar);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            setProgress(progress);
+          },
+          (error) => {
+            console.log(error);
+          },
+          () => {
+            storage
+              .ref("images")
+              .child(avatar.name)
+              .getDownloadURL()
+              .then((url) => {
+                setUrl(url);
+              });
+          }
+        );
+      };
 
     return (
-        <div>
-           <span onClick={AddPostFunc}> add +</span>
-          
+        <div className="flex">
+            <input placeholder="Title.." onChange={(e)=>setTitle(e.target.value)} type="text" />
+            <input placeholder="Discription..." onChange={(e)=>setDiscription(e.target.value)} type="text" />
+           
+            <div >
+              <input type="file" onChange={handleChange} />
+              <div>
+                <button onClick={handleUpload}>
+                  Upload
+                </button>
+                <progress value={progress} max="100" />
+              </div>
+            </div>
+
+
+                  <button onClick={AddPostFunc}> Add </button>
+                  <Link
+  to={{
+    pathname: "/",
+    state: { posts }
+  }}
+>explore</Link>
         </div>
     )
 }
 
 export default AddPost
+
+
+

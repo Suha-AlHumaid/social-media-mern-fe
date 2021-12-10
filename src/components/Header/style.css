@@ -1,6 +1,11 @@
-.flexRow{
+.fixed {
+    position: fixed;
+    min-height: 50px;
+    background-color: lavenderblush;
+    border-bottom: 1px solid rgb(216, 214, 214);
     width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
+    z-index: 99;
 }
