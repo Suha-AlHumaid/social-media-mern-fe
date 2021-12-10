@@ -3,36 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Post from "../Post";
-const Explore = () => {
-  const [posts, setPosts] = useState([]);
-const dispatch = useDispatch()
-  const state = useSelector((state) => {
-    return {
-      reducerLog: state.reducerLog,
-    };
-  });
+const Explore = ({posts}) => {
 
-
-  useEffect(() => {
-    getAll();
-  }, []);
-
-  const getAll = async () => {
-    try {
-      const result = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/allPosts`,
-        {
-          headers: {
-            Authorization: `Bearer ${state.reducerLog.token}`,
-          },
-        }
-      );
-      // setTasks(result.data);
-      setPosts(result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
  
 

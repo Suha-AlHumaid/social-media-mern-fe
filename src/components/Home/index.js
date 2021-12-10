@@ -1,23 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes ,Route} from 'react-router-dom'
+import axios from "axios";
 import Explore from "../Explore";
 import Login from "../Login";
 import Register from "../Register";
-import { useSelector,useDispatch } from "react-redux";
 import Header from '../Header'
 import Profile from "../Profile";
-import { Routes ,Route} from 'react-router-dom'
 import UserPosts from "../UserPosts";
+import Menu from "../Menu";
+import AddPost from "../AddPost";
 const Home = () => {
   const [log, setLog] = useState(false);
-
+  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch()
+    const state = useSelector((state) => {
+      return {
+        reducerLog: state.reducerLog,
+      };
+    });
   
-
-  const state = useSelector((state) => {
-    return {
-      reducerLog: state.reducerLog,
-
+  
+    useEffect(() => {
+      getAll();
+    }, []);
+  
+    const getAll = async () => {
+      try {
+        const result = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/allPosts`,
+          {
+            headers: {
+              Authorization: `Bearer ${state.reducerLog.token}`,
+            },
+          }
+        );
+        // setTasks(result.data);
+        setPosts(result.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
-  });
+
 
   return (
     <div>
@@ -49,10 +73,12 @@ const Home = () => {
         <>
         <Header/>
         <Routes>
-            <Route exact path="/" element={<Explore />}/>
+            <Route exact path="/" element={<Explore posts={posts} />}/>
             <Route exact path="/home" element={<UserPosts />}/>
             <Route exact path="/profile" element={<Profile />}/>
+            <Route exact path="/add" element={<AddPost getAll={getAll} />}/>
           </Routes>
+          <Menu/>
         </>
       )}
     </div>

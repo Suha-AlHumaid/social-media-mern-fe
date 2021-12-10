@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import axios from "axios";
 import Post from "../Post";
-import AddPost from "../AddPost";
+import "./style.css"
+
 
 
 const UserPosts = () => {
@@ -37,14 +38,17 @@ const UserPosts = () => {
       }
     };
   
-    return (<div>
-  <h1>User Posts</h1>
-  {posts.length?
+    return (
+<div>
+<div className="reverseCol">
+  { posts.length?
   posts.map(elem=>
   <Post elem={elem}/>
-  ):"you dont have any post"
-  }
-  <AddPost getAll={getAll}/>
+  )
+
+  :"you dont have any post"
+}
+  </div>
     </div>
     )
 }

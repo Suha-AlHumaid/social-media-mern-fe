@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./style.css"
 const AddPost = ({getAll}) => {
     // /post
-    const [discription, setDiscription] = useState("cc");
-    const [avatar, setAvatar] = useState("ddd");
+    const [discription, setDiscription] = useState("hihhihi");
+    const [avatar, setAvatar] = useState("hihhh");
     const [ title, setTitle] = useState(" taass");
     const [post,setPost]=useState(null)
 
