@@ -1,18 +1,17 @@
-import React from 'react'
-import "./style.css"
-import { Link } from 'react-router-dom'
+import React from "react";
+import "./style.css";
+import { Link } from "react-router-dom";
 const Menu = () => {
-    return (
-        <div className="menu">
-        <div className="flexRow stk">
+  return (
+    <div className="menu">
+      <div className="flexRow stk">
         <Link to="/home">Home</Link>
         <Link to="/">Explore</Link>
         <Link to="/add">Add</Link>
-           <Link to="/profile">Profile</Link>
+        <Link to="/profile">Profile</Link>
+      </div>
+    </div>
+  );
+};
 
-        </div>
-        </div>
-    )
-}
-
-export default Menu
+export default Menu;

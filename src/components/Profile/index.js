@@ -1,22 +1,18 @@
-import React from 'react'
+import React from "react";
 import { logOut } from "../../Reducers/login";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 const Profile = () => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const logout = () => {
+    dispatch(logOut({ user: null, token: "" }));
+  };
 
-    const logout = () => {
-      
-        dispatch(logOut({ user: null, token: "" }));
-      };
+  return (
+    <div>
+      <p>profile</p>
 
-
-    return (
-        <div>
-
-            <p>profile</p>
-
-            <span
+      <span
         className="icon"
         onClick={(e) => {
           e.preventDefault();
@@ -25,9 +21,8 @@ const Profile = () => {
       >
         (logout)
       </span>
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default Profile
+export default Profile;

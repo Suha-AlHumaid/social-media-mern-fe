@@ -4,44 +4,40 @@ import { logOut } from "../../Reducers/login";
 import axios from "axios";
 import Comment from "../Comment";
 
-const Comments = ({post}) => {
-    const [comments, setComments] = useState([]);
-    const state = useSelector((state) => {
-      return {
-        reducerLog: state.reducerLog,
-      };
-    });
-
-    useEffect(() => {
-      getAll();
-    }, []);
-  
-    const getAll = async () => {
-      try {
-        const result = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/comments/${post._id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${state.reducerLog.token}`,
-            },
-          }
-        );
-
-
-  setComments(result.data);
-      } catch (error) {
-        console.log(error);
-      }
+const Comments = ({ post }) => {
+  const [comments, setComments] = useState([]);
+  const state = useSelector((state) => {
+    return {
+      reducerLog: state.reducerLog,
     };
-  
-    return (<div>
+  });
 
-  {comments.length?comments.map(elem=>
-<Comment elem={elem}/>
-  ) :""
-  }
-    </div>
-    )
+  useEffect(() => {
+    getAll();
+  }, []);
+
+  const getAll = async () => {
+    try {
+      const result = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/comments/${post._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${state.reducerLog.token}`,
+          },
+        }
+      );
+
+      setComments(result.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-export default Comments
+  return (
+    <div>
+      {comments.length ? comments.map((elem) => <Comment elem={elem} />) : ""}
+    </div>
+  );
+};
+
+export default Comments;

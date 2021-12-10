@@ -1,13 +1,23 @@
-import React from 'react'
-import Comments  from "../Comments"
-const Post = ({elem}) => {
+import React from "react";
 
-    return (
-        <div>
-           <h3>{elem.discription}</h3>
-           comments: <Comments post={elem}/>
-        </div>
-    )
-}
+import Comments from "../Comments";
+import { Link, useNavigate } from "react-router-dom";
+const Post = ({ elem }) => {
+  // `/singlePost/${elem._id}`
+  const navigate = useNavigate();
+  return (
+    <div>
+      <h3>{elem.discription}</h3>
 
-export default Post
+      <img
+        src={elem.avatar}
+        alt={elem._id}
+        onClick={() => navigate(`/singlePost/${elem._id}`)}
+      />
+
+      {/* comments: <Comments post={elem}/> */}
+    </div>
+  );
+};
+
+export default Post;

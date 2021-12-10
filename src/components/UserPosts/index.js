@@ -37,9 +37,7 @@ const UserPosts = () => {
   return (
     <div>
       <div className="reverseCol">
-        {posts.length
-          ? posts.map((elem) => <Post elem={elem} />)
-          : "you dont have any post"}
+        {posts.length ? posts.map((elem) => <Post elem={elem} />) : ""}
       </div>
     </div>
   );

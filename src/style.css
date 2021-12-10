@@ -9,3 +9,6 @@ a{
     color: inherit;
     cursor: pointer;
 }
+img {
+    width: 100%;
+}
