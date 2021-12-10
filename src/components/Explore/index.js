@@ -1,16 +1,17 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../../Reducers/login";
 import axios from "axios";
 import Post from "../Post";
 const Explore = () => {
   const [posts, setPosts] = useState([]);
+const dispatch = useDispatch()
   const state = useSelector((state) => {
     return {
       reducerLog: state.reducerLog,
     };
   });
+
 
   useEffect(() => {
     getAll();
@@ -27,16 +28,18 @@ const Explore = () => {
         }
       );
       // setTasks(result.data);
-console.log(result.data);
       setPosts(result.data);
     } catch (error) {
       console.log(error);
     }
   };
 
+ 
+
   return (<div>
+
 <h1>Explore Posts:</h1>
-{posts.length?posts.map(elem=>
+{posts&& posts.length?posts.map(elem=>
 <Post  key ={elem._id} elem={elem}/>
 ) :"cc"
 }

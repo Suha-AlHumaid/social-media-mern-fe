@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import axios from "axios";
 import Post from "../Post";
+import AddPost from "../AddPost";
+
 
 const UserPosts = () => {
 
@@ -10,6 +12,7 @@ const UserPosts = () => {
     const state = useSelector((state) => {
       return {
         reducerLog: state.reducerLog,
+
       };
     });
   
@@ -28,7 +31,6 @@ const UserPosts = () => {
           }
         );
         // setTasks(result.data);
-  
         setPosts(result.data);
       } catch (error) {
         console.log(error);
@@ -37,10 +39,12 @@ const UserPosts = () => {
   
     return (<div>
   <h1>User Posts</h1>
-  {posts.map(elem=>
+  {posts.length?
+  posts.map(elem=>
   <Post elem={elem}/>
-  )
+  ):"you dont have any post"
   }
+  <AddPost getAll={getAll}/>
     </div>
     )
 }

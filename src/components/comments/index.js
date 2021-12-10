@@ -11,7 +11,7 @@ const Comments = ({post}) => {
         reducerLog: state.reducerLog,
       };
     });
-  console.log(state.reducerLog.token);
+
     useEffect(() => {
       getAll();
     }, []);
@@ -26,8 +26,8 @@ const Comments = ({post}) => {
             },
           }
         );
-        // setTasks(result.data);
-  console.log(result.data);
+
+
   setComments(result.data);
       } catch (error) {
         console.log(error);

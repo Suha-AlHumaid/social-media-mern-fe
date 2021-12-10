@@ -1,41 +1,62 @@
 import React, { useState } from "react";
 import Explore from "../Explore";
-import Login from '../Login'
-import Register from '../Register'
-import { useSelector } from "react-redux";
+import Login from "../Login";
+import Register from "../Register";
+import { useSelector,useDispatch } from "react-redux";
+import Header from '../Header'
+import Profile from "../Profile";
+import { Routes ,Route} from 'react-router-dom'
 import UserPosts from "../UserPosts";
 const Home = () => {
-    const [log , setLog]= useState(false)
-    const state = useSelector((state) => {
-        return {
-          reducerLog: state.reducerLog,
-        };
-      });
+  const [log, setLog] = useState(false);
 
-    return (
-        <div >
-                {!state.reducerLog.token ? 
+  
+
+  const state = useSelector((state) => {
+    return {
+      reducerLog: state.reducerLog,
+
+    };
+  });
+
+  return (
+    <div>
+      {!state.reducerLog.token ? (
         <div className="home">
-        {log?
+          {log ? (
+            <>
+              <Register />
+              <p>
+                you have an account?{" "}
+                <span className="icon" onClick={(e) => setLog(false)}>
+                  Loggin here
+                </span>{" "}
+              </p>
+            </>
+          ) : (
+            <>
+              <Login />
+              <p>
+                you don't have an account?{" "}
+                <span className="icon" onClick={(e) => setLog(true)}>
+                  Register here
+                </span>{" "}
+              </p>
+            </>
+          )}
+        </div>
+      ) : (
         <>
-        <Register /> 
-        <p>you have an account? <span className="icon" onClick={(e)=>setLog(false)}>Loggin here</span> </p>
-        </>:
-        <>
-        <Login />
-        <p>you don't have an account? <span className="icon" onClick={(e)=>setLog(true)}>Register here</span> </p>
-        </>
-        }
-       
-      </div>
-       : (
-           <>
-           <UserPosts/>
-        <Explore/>
+        <Header/>
+        <Routes>
+            <Route exact path="/" element={<Explore />}/>
+            <Route exact path="/home" element={<UserPosts />}/>
+            <Route exact path="/profile" element={<Profile />}/>
+          </Routes>
         </>
       )}
-      </div>
-    )
-}
+    </div>
+  );
+};
 
-export default Home
+export default Home;
