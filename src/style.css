@@ -82,7 +82,10 @@ img {
     margin-left: 3px;
     color: #ad2626;
 }
-.comments{
-    color: #747d80;
-    font-size: 0.7rem; 
+.comment{
+    /* color:#e6e6e6; */
+    font-size: 0.8rem;
+    display: flex;
+    align-items: stretch;
+    padding-left: 7px;
 }

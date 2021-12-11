@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../../Reducers/login";
 import axios from "axios";
 import Comment from "../Comment";
-
+import "./style.css"
 const Comments = ({ post }) => {
   const [comments, setComments] = useState([]);
   const state = useSelector((state) => {
@@ -34,7 +33,7 @@ const Comments = ({ post }) => {
   };
 
   return (
-    <div>
+    <div className="comments">
       {comments.length ? comments.map((elem) => <Comment elem={elem} />) : ""}
     </div>
   );
