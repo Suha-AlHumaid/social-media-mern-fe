@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import {IoMdHeart} from "react-icons/io"
+import Comments from "../Comments";
+import "./style.css"
 
-import axios from "axios";
 const SinglePost = ({ deletePost }) => {
   const { _id } = useParams();
   console.log(_id); //post id
@@ -35,10 +38,24 @@ const SinglePost = ({ deletePost }) => {
     }
   };
   return (
-    <div>
-      {post && post.discription}
-      <p onClick={(e) => deletePost(_id)}>...</p>
-    </div>
+<div className="container">
+<div className="full">
+
+<img
+  src={post && post.avatar}
+  alt={post && post._id}
+/>
+<div className="txt">
+<h1 className="user">{post && post.puplisher.userName} <IoMdHeart className="unlike"/></h1>
+   <h3 >{post && post.discription}</h3>
+   <Comments post={post&& post}/>
+
+   <p className="date">{post && post.Date}</p>
+   </div>
+
+
+
+</div></div>
   );
 };
 

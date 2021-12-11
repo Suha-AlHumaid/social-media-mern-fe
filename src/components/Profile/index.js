@@ -9,7 +9,7 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <p>profile</p>
 
       <span

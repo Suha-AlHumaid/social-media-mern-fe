@@ -28,6 +28,7 @@ const UserPosts = () => {
         }
       );
       // setTasks(result.data);
+      console.log(result.data);
       setPosts(result.data);
     } catch (error) {
       console.log(error);
@@ -35,8 +36,9 @@ const UserPosts = () => {
   };
 
   return (
-    <div>
-      <div className="reverseCol">
+    <div className="container">
+      
+      <div className="reverseCol full">
         {posts.length ? posts.map((elem) => <Post elem={elem} />) : ""}
       </div>
     </div>

@@ -76,36 +76,44 @@ const AddPost = ({ getAll, posts }) => {
   };
 
   return (
-    <div className="flex">
+    <div className="container">
+
+    <div className="form">
+      <h1 className="heading">ADD POST </h1>
       <input
+      className="input"
         placeholder="Title.."
         onChange={(e) => setTitle(e.target.value)}
         type="text"
       />
-      <input
+      <textarea
+      required
+      rows="4"
+        className="input"
         placeholder="Discription..."
         onChange={(e) => setDiscription(e.target.value)}
         type="text"
       />
 
-      <div>
-        <input type="file" onChange={handleChange} />
-        <div>
-          <button onClick={handleUpload}>Upload</button>
+      <div className="uplaod">
+        <label className="custom-file-upload"> Choose File
+        <input type="file" onChange={handleChange} /></label>
+    
+          <button className="custom-file-upload" onClick={handleUpload}>Upload</button>
           <progress value={progress} max="100" />
-        </div>
+       
       </div>
 
-      <button onClick={AddPostFunc}> Add </button>
-      <Link
+      <button className="submit" onClick={AddPostFunc}> Done </button>
+      {/* <Link
         to={{
           pathname: "/",
           state: { posts },
         }}
       >
         explore
-      </Link>
-    </div>
+      </Link> */}
+    </div></div>
   );
 };
 

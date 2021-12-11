@@ -1,20 +1,16 @@
-.flexRow{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    min-height: 50px;
-}
-.menu{
-    width: 100%;
+
+.fixedbottom {
     position: fixed;
-    bottom: 0;
-    background-color: lavenderblush;
-    border-top: 1px solid rgb(216, 214, 214);
+    min-height: 50px;
+    background-color: #191918;
+    border-top: 1px solid #202427;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 99;
-  
-}
-.stk{
-    position:sticky;
-  
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
 }

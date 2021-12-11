@@ -1,9 +1,89 @@
-.flex{
-    width: 100%;
-    min-height: 90vh;
+.flex {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+}
+.input {
+  width: 70%;
+  padding: 15px;
+  background: #f8f8f8;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  margin-bottom: 25px;
+  color: black !important;
+  font-size: 13px;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+  font-size: 17px;
+  letter-spacing: 2px;
+  position: relative;
+  resize: none;
+}
+.input:focus{
+    color:white;
+    outline:none;
+    border:1px solid #8BC3A3
+}
+
+.form {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+  text-align: center;
+  background: #fff;
+  border-radius: 2px;
+}
+.heading {
+  color: #242527;
+  font-size: 25px;
+  margin: 20px 0px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: #242527;
+    background-color: rgb(238, 238, 238);
+}
+.uplaod{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    min-height: 100px;
+    justify-content: space-evenly;
 
+}
+.submit{
+    width: 70%;
+    padding: 0 20px;
+    line-height: 50px;
+    background: #1ebbf0;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+}
+.submit:hover{
+    background-color: #1a9dc9;
 }

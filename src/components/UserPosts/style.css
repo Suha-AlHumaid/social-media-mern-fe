@@ -1,5 +1,8 @@
 .reverseCol {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column-reverse;
-  margin-bottom: 60px;
+  justify-content: center;
+  align-items: flex-start;
+ 
 }

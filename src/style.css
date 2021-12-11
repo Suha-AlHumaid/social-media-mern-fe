@@ -1,14 +1,88 @@
-body{
-    margin: 0 auto;
-    box-sizing: border-box;
-    width: 100%;
-   
+/* @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;500&family=Open+Sans:wght@300;400&family=Red+Hat+Mono:wght@500&display=swap'); */
+body {
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #242527;
+  color: #e4e5e4;
+  /* font-family: 'Montserrat', sans-serif; */
+  font-family: "Lato", sans-serif;
 }
-a{
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  /* color: #626a6f; */
+  color: #909090;
 }
+
 img {
-    width: 100%;
+    box-sizing: border-box;
+    width: 98%;
+    object-fit: cover;
+    height: 71vh;
+    margin: 0 6px;
+}
+
+.container {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #252a2e;
+  /* #252a2e */
+  /* #18242c */
+
+  box-shadow: 0px 0px 69px -4px rgba(0, 0, 0, 0.74);
+  -webkit-box-shadow: 0px 0px 69px -4px rgba(0, 0, 0, 0.74);
+  -moz-box-shadow: 0px 0px 69px -4px rgba(0, 0, 0, 0.74);
+  min-height: 90vh;
+}
+
+.flexRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 50px;
+}
+.stk {
+  position: sticky;
+}
+.icon {
+  cursor: pointer;
+  font-size: 2rem;
+  margin-left: 3px;
+  color: #747d80;
+}
+.divIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user{
+    color:#e6e6e6;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: stretch;
+
+}
+.date{
+    color: #747d80;
+    font-size: 0.5rem;
+
+}
+.unlike{
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 3px;
+    color: #747d80;
+}
+.like{
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 3px;
+    color: #ad2626;
+}
+.comments{
+    color: #747d80;
+    font-size: 0.7rem; 
 }

@@ -1,21 +1,21 @@
 import React from "react";
-
-import Comments from "../Comments";
-import { Link, useNavigate } from "react-router-dom";
+import "./style.css"
+import { useNavigate } from "react-router-dom";
+import{IoMdHeart} from "react-icons/io"
 const Post = ({ elem }) => {
-  // `/singlePost/${elem._id}`
   const navigate = useNavigate();
   return (
-    <div>
-      <h3>{elem.discription}</h3>
-
+    <div className="full">
       <img
         src={elem.avatar}
         alt={elem._id}
         onClick={() => navigate(`/singlePost/${elem._id}`)}
       />
-
-      {/* comments: <Comments post={elem}/> */}
+      <div className="txt">
+      <h1 className="user">{elem.puplisher.userName} <IoMdHeart className="unlike"/></h1>
+         <h3 >{elem.discription}</h3>
+         <p className="date">{elem.Date}</p>
+         </div>
     </div>
   );
 };

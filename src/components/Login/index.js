@@ -32,16 +32,21 @@ const Login = () => {
           password,
         }
       );
-
+console.log(result);
       if (result.status == 200) {
         setMessage("Success");
         dispatch(
           login1({ user: result.data.result, token: result.data.token })
-        );
-      }
+        )
+      } 
     } catch (error) {
-      console.log(error);
-      setMessage("faild");
+      console.log(error.response);
+      if(error.response.status== 403) {
+        setMessage("varified your email");
+      }else {
+        setMessage("wrong email or password");
+      }
+      // setMessage("faild");
     }
   };
 

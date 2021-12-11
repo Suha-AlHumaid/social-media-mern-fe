@@ -5,10 +5,12 @@ import Post from "../Post";
 import "./style.css";
 const Explore = ({ posts, getAll }) => {
   return (
-    <div className="reverseCol">
+    <div className="container">
+    <div className="reverseCol full">
       {posts && posts.length
         ? posts.map((elem) => <Post key={elem._id} elem={elem} />)
         : "cc"}
+    </div>
     </div>
   );
 };

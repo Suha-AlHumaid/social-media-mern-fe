@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Explore from "../Explore";
@@ -11,12 +11,12 @@ import UserPosts from "../UserPosts";
 import Menu from "../Menu";
 import AddPost from "../AddPost";
 import SinglePost from "../SinglePost";
-import { Link, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import "./style.css"
 const Home = () => {
   const [log, setLog] = useState(false);
   const [posts, setPosts] = useState([]);
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const state = useSelector((state) => {
     return {
@@ -67,11 +67,11 @@ const Home = () => {
   };
   console.log(state.reducerLog.token);
   return (
-    <div>
+    <div >
       {!state.reducerLog.token ? (
-        <div className="home">
+        <div className="container">
           {log ? (
-            <>
+            <div>
               <Register />
               <p>
                 you have an account?{" "}
@@ -79,7 +79,7 @@ const Home = () => {
                   Loggin here
                 </span>{" "}
               </p>
-            </>
+            </div>
           ) : (
             <>
               <Login />
@@ -95,6 +95,7 @@ const Home = () => {
       ) : (
         <>
           <Header />
+          <>
           <Routes>
             <Route
               exact
@@ -114,6 +115,7 @@ const Home = () => {
               element={<AddPost getAll={getAll} posts={posts} />}
             />
           </Routes>
+          </>
           <Menu />
         </>
       )}
