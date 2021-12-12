@@ -15,14 +15,18 @@ const initialState = {
       case "LOGIN":
         const { user, token } = payload;
         localStorage.setItem("token", token);
+        localStorage.setItem("user",JSON.stringify(user));
         return { user, token };
       case "LOGOUT":
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         return { payload };
-  
+
       default:
         const storageToken = localStorage.getItem("token")
-        if(storageToken) return {token:storageToken}
+        const storageUser = localStorage.getItem("user")
+        const userStorage= JSON.parse(storageUser)
+        if(storageToken && storageUser) return {token:storageToken,user: userStorage}
         // If the reducer doesn't care about this action type,
         // return the existing state unchanged
         return state;

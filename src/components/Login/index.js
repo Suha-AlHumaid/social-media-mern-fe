@@ -6,11 +6,10 @@ import "./style.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [val, setVal] = useState("");
+
   const [userName, setUserName] = useState("");
   const dispatch = useDispatch();
-
+  const [message, setMessage] = useState("");
   const state = useSelector((state) => {
     return {
       reducerLog: state.reducerLog,
@@ -28,11 +27,11 @@ const Login = () => {
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/login`,
         {
-          email: val,
+          email,
           password,
         }
       );
-console.log(result);
+console.log(result.data);
       if (result.status == 200) {
         setMessage("Success");
         dispatch(
@@ -51,19 +50,21 @@ console.log(result);
   };
 
   return (
-    <div className="logForm">
-      <h1>Login</h1>
-      <lable for="email">Email or username:</lable>
-      <input type="text" id="email" onChange={(e) => setVal(e.target.value)} />
-      <lable for="password1">Password:</lable>
+    <div className="form">
+      {/* <h1 className="heading">Login To Your Account</h1> */}
+      <h1 className="logoHome">𝐼𝓃𝓈𝓉𝒶𝑔𝓇𝒶𝓂𝒾</h1>
+      <input className="input" placeholder="Email..." type="text" onChange={(e) => setEmail(e.target.value)} />
+      
       <input
+       className="input" placeholder="Password..." 
         type="password"
-        id="password1"
+      
         onChange={(e) => setPassword(e.target.value)}
       />
       <p>{message ? message : ""}</p>
-      <p>forget password?</p>
-      <button onClick={login}>Submit</button>
+      <button className="submit" onClick={login}>Submit</button>
+      <p className="darkLink">Log in with Gmail</p>
+      <p className="darkLink">Forget password?</p>
     </div>
   );
 };

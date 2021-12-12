@@ -8,7 +8,7 @@ const Explore = ({ posts, getAll }) => {
     <div className="container">
     <div className="reverseCol full">
       {posts && posts.length
-        ? posts.map((elem) => <Post key={elem._id} elem={elem} />)
+        ? posts.map((elem) => <Post getAll={getAll} key={elem._id} elem={elem} />)
         : "cc"}
     </div>
     </div>

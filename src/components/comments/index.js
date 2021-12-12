@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Comment from "../Comment";
 import "./style.css"
-const Comments = ({ post }) => {
-  const [comments, setComments] = useState([]);
+const Comments = ({getPost,comments,post,getAll }) => {
+  const [comment, setComment] = useState([]);
   const state = useSelector((state) => {
     return {
       reducerLog: state.reducerLog,
@@ -13,28 +13,32 @@ const Comments = ({ post }) => {
 
   useEffect(() => {
     getAll();
+    getPost();
   }, []);
 
-  const getAll = async () => {
-    try {
-      const result = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/comments/${post._id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${state.reducerLog.token}`,
-          },
-        }
-      );
+const addComment=async()=>{
+  try {
+    const result = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/comment/${post._id}`,
+      {discription:"Ddd"},
+      {
+        headers: {
+          Authorization: `Bearer ${state.reducerLog.token}`,
+        },
+      }
+    );
 
-      setComments(result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+    setComment(result.data);
+    getAll()
+  } catch (error) {
+    console.log(error);
+  }
+}
   return (
     <div className="comments">
-      {comments.length ? comments.map((elem) => <Comment elem={elem} />) : ""}
+  
+      {comments.length? comments.map((elem) => <Comment  getAll={ getAll} elem={elem} />) : ""}
+      <p onClick={addComment}> add comments</p>
     </div>
   );
 };

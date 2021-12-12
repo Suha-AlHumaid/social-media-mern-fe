@@ -11,8 +11,10 @@ import UserPosts from "../UserPosts";
 import Menu from "../Menu";
 import AddPost from "../AddPost";
 import SinglePost from "../SinglePost";
+import EditPost from "../EditPost";
 import { useNavigate } from "react-router-dom";
-import "./style.css"
+import "./style.css";
+
 const Home = () => {
   const [log, setLog] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -65,56 +67,70 @@ const Home = () => {
       console.log(error);
     }
   };
-  console.log(state.reducerLog.token);
+
   return (
-    <div >
+    <div>
       {!state.reducerLog.token ? (
-        <div className="container">
-          {log ? (
-            <div>
-              <Register />
-              <p>
-                you have an account?{" "}
-                <span className="icon" onClick={(e) => setLog(false)}>
-                  Loggin here
-                </span>{" "}
-              </p>
-            </div>
-          ) : (
-            <>
-              <Login />
-              <p>
-                you don't have an account?{" "}
-                <span className="icon" onClick={(e) => setLog(true)}>
-                  Register here
-                </span>{" "}
-              </p>
-            </>
-          )}
-        </div>
+        <>
+
+          <div className="container">
+            {log ? (
+              <div>
+                <Register />
+                <div className="flexRow stk">
+                  <div className="fixedbottom">
+                    <p>Have an account?
+                    <span className="link" onClick={(e) => setLog(false)}>
+                      Loggin Now!
+                    </span></p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
+                <Login />
+                <div className="flexRow stk">
+                  <div className="fixedbottom">
+                    <p>Don't have an account?
+                    <span className="link" onClick={(e) => setLog(true)}>
+                    Join Us Now!
+                    </span></p>
+                  </div>
+                </div>
+              </>
+            )}
+
+          </div>
+        
+        </>
       ) : (
         <>
           <Header />
           <>
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={<Explore posts={posts} getAll={getAll} />}
-            />
-            <Route exact path="/home" element={<UserPosts />} />
-            <Route exact path="/profile" element={<Profile />} />
-            <Route
-              exact
-              path="/singlePost/:_id"
-              element={<SinglePost deletePost={deletePost} />}
-            />
-            <Route
-              exact
-              path="/add"
-              element={<AddPost getAll={getAll} posts={posts} />}
-            />
-          </Routes>
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={<Explore posts={posts} getAll={getAll} />}
+              />
+              <Route exact path="/home" element={<UserPosts />} />
+              <Route exact path="/profile" element={<Profile />} />
+              <Route
+                exact
+                path="/singlePost/:_id"
+                element={<SinglePost deletePost={deletePost} />}
+              />
+              <Route
+                exact
+                path="/add"
+                element={<AddPost getAll={getAll} posts={posts} />}
+              />
+                    <Route
+                exact
+                path="/editPost/:_id"
+                element={<EditPost deletePost={deletePost} />}
+              />
+            </Routes>
           </>
           <Menu />
         </>

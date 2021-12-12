@@ -6,19 +6,19 @@ const Menu = () => {
   return (
     <div className="flexRow stk">
       <div className="fixedbottom">
-        <div className="divIcon">
-          <Link to="/home">Home</Link> < MdHome  className="icon" />
+        <div>
+          <Link className="divIcon"to="/home">Home< MdHome  className="icon" /></Link> 
           </div>
 
-          <div className="divIcon">
-          <Link to="/">Explore</Link> <MdExplore className="icon" />
+          <div >
+          <Link className="divIcon" to="/">Explore<MdExplore className="icon" /></Link> 
         </div>
 
-        <div className="divIcon">
-          <Link to="/add">Add</Link>< MdAddBox className="icon" />
+        <div >
+          <Link className="divIcon" to="/add">New< MdAddBox className="icon" /></Link>
           </div>
-          <div className="divIcon"> 
-          <Link to="/profile">Profile</Link>< MdPerson className="icon" />
+          <div > 
+          <Link className="divIcon" to="/profile">Profile< MdPerson className="icon" /></Link>
         </div>
       </div>
     </div>

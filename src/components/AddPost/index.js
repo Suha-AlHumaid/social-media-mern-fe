@@ -96,7 +96,7 @@ const AddPost = ({ getAll, posts }) => {
       />
 
       <div className="uplaod">
-        <label className="custom-file-upload"> Choose File
+        <label className="custom-file-upload"> Choose Photo
         <input type="file" onChange={handleChange} /></label>
     
           <button className="custom-file-upload" onClick={handleUpload}>Upload</button>
