@@ -20,7 +20,8 @@ import "./style.css";
 const Home = () => {
   const [log, setLog] = useState(false);
   const [posts, setPosts] = useState([]);
-
+  const [isPuplisher, setIsPuplisher]=useState(false)
+  const [isAdmin, setIsAdmin]=useState(false)
   const navigate = useNavigate();
   const state = useSelector((state) => {
     return {
@@ -69,7 +70,18 @@ const Home = () => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    check();
+  }, []);
+  const check = () => {
+    const storageUser = localStorage.getItem("user")
+    const userStorage= JSON.parse(storageUser)
 
+    if (userStorage.role !== "61a744e5313b1e7127be4634") {
+      setIsAdmin(true);
+      console.log("admin");
+    }
+  };
   return (
     <div>
       {!state.reducerLog.token ? (
@@ -133,7 +145,7 @@ const Home = () => {
                 path="/editPost/:_id"
                 element={<EditPost deletePost={deletePost} />}
               />
-              {state.reducerLog.user.role !== "61a744e5313b1e7127be4634" ? (
+              {isAdmin ? (
                 <>
                 <Route
                   exact
@@ -151,7 +163,7 @@ const Home = () => {
               )}
             </Routes>
           </>
-          <Menu role={state.reducerLog.user.role} />
+          <Menu isAdmin={isAdmin} />
         </>
       )}
     </div>

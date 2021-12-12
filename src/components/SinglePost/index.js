@@ -15,6 +15,7 @@ const SinglePost = () => {
   const [discription, setDiscription] = useState([]);
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -42,11 +43,23 @@ const SinglePost = () => {
         }
       );
 
-      setPost(result.data);
-      if (result.data.puplisher._id == state.reducerLog.user._id) {
-        setIsPuplisher(true);
-   
+    
+      if(result.data){
+        setPost(result.data);
+        const storageUser = localStorage.getItem("user")
+        const userStorage= JSON.parse(storageUser)
+    
+        console.log(userStorage);
+        if (result.data.puplisher._id == userStorage._id) {
+          setIsPuplisher(true);
+        }
+    
+        if (userStorage.role !== "61a744e5313b1e7127be4634") {
+          setIsAdmin(true);
+          console.log("admin");
+        }
       }
+ 
     } catch (error) {
       console.log(error);
     }

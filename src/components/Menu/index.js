@@ -3,7 +3,7 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { MdExplore, MdHome, MdAddBox , MdPerson,MdAdminPanelSettings} from "react-icons/md";
 
-const Menu = (role) => {
+const Menu = ({isAdmin}) => {
   return (
     <div className="flexRow stk">
       <div className="fixedbottom">
@@ -21,7 +21,7 @@ const Menu = (role) => {
           <div > 
           <Link className="divIcon" to="/profile">Profile< MdPerson className="icon" /></Link>
         </div>
-        {role !== "61a744e5313b1e7127be4634"? <div > 
+        {isAdmin? <div > 
           <Link className="divIcon" to="/dashboard">Dashboard< MdAdminPanelSettings className="icon" /></Link>
         </div>:""}
       </div>

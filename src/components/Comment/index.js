@@ -58,25 +58,28 @@ const Comment = ({elem, getPost,getAllComments}) => {
     }
 
     useEffect(() => {
-      check()
-    }, [])
+      check();
+    }, []);
+    const check = () => {
+      const storageUser = localStorage.getItem("user")
+      const userStorage= JSON.parse(storageUser)
   
-  const check =()=>{
-    if (elem.puplisher._id ==state.reducerLog.user._id){
-      setIsPuplisher(true)
-    }
-    if(state.reducerLog.role !== "61a744e5313b1e7127be4634"){
-      setIsAdmin(true)
-      console.log("admin");
-    }
-   
-  }
+      console.log(userStorage);
+      if (elem.puplisher._id == userStorage._id) {
+        setIsPuplisher(true);
+      }
+  
+      if (userStorage.role !== "61a744e5313b1e7127be4634") {
+        setIsAdmin(true);
+        console.log("admin");
+      }
+    };
     return (
         <div className="commentContainer">
            
             <h1 className="user">{elem.puplisher.userName}:</h1> <span className="comment">{elem.discription}</span>
             {isPuplisher? <TiDeleteOutline className="unlike" onClick={deleComment}/>:""}
-            {isAdmin? <TiDeleteOutline className="unlike" onClick={()=>deleCommentAdmin(elem._id)}/>:""}
+            {isAdmin? <TiDeleteOutline className="like" onClick={()=>deleCommentAdmin(elem._id)}/>:""}
         </div>
     )
 }

@@ -20,7 +20,7 @@ const initialState = {
       case "LOGOUT":
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        return { payload };
+        return {payload: state} ;
 
       default:
         const storageToken = localStorage.getItem("token")
