@@ -1,0 +1,31 @@
+.h1{
+    color: #8a8a8a;
+    font-size: 1.5rem;
+}
+
+.h2{
+    /* color: #8a8a8a; */
+    font-size: 1.5rem;
+}
+.profile{
+/* position: relative; */
+    margin: 0 auto;
+    padding: 25px ;
+    width: 70%;
+    background-color: #8a8a8a14;
+    border-radius: 10px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#avatar {
+    border-radius: 40%;
+    width: 60%;
+    height: 30%;
+    object-fit: fill;
+  }
+
+  

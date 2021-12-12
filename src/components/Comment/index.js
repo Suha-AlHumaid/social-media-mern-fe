@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
+import {TiDeleteOutline} from"react-icons/ti"
 import "./style.css"
-const Comment = ({elem, getAll}) => {
+const Comment = ({elem, getPost,getAllComments}) => {
     const state = useSelector((state) => {
         return {
           reducerLog: state.reducerLog,
         };
       });
+      useEffect(() => {
+        getPost();
+      }, []);
     const deleComment=async()=>{
  
         try {
@@ -20,8 +24,8 @@ const Comment = ({elem, getAll}) => {
             }
           );
     
-    getAll()
-       
+          getPost()
+          getAllComments()
    } catch (error) {
        console.log(error);
    }
@@ -31,7 +35,7 @@ const Comment = ({elem, getAll}) => {
         <div className="commentContainer">
            
             <h1 className="user">{elem.puplisher.userName}:</h1> <span className="comment">{elem.discription}</span>
-            <p onClick={deleComment}>Dele</p>
+            <TiDeleteOutline className="unlike" onClick={deleComment}/>
             
         </div>
     )

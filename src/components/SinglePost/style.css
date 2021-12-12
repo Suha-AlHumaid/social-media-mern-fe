@@ -1,0 +1,17 @@
+.addComment{
+
+    background-color: #252a2e;
+    border: none;
+    border-bottom: 1px solid #747d80;
+    color: #e4e5e4;
+
+}
+
+.addComment:focus{
+    outline:none;
+    border-bottom: 1px solid #1ebbf0;
+    /* background-color: #252a2e;
+    border: none;
+    border-bottom: 1px solid #747d80;
+    color: #e4e5e4; */
+}

@@ -3,16 +3,19 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdHeart } from "react-icons/io";
-import Comments from "../Comments";
-import { MdEdit } from "react-icons/md";
+import Comment from "../Comment";
+import { MdEdit,MdAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-const SinglePost = ({ deletePost }) => {
-  const [comments, setComments] = useState([]);
+const SinglePost = () => {
   const { _id } = useParams(); //post id
   const [post, setPost] = useState(null);
   const [isPuplisher, setIsPuplisher] = useState(false);
+  const [discription, setDiscription] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState([]);
+
   const navigate = useNavigate();
 
   const state = useSelector((state) => {
@@ -24,9 +27,12 @@ const SinglePost = ({ deletePost }) => {
   useEffect(() => {
     getPost();
   }, []);
+  
+
 
   const getPost = async () => {
     try {
+    
       const result = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/post/${_id}`,
         {
@@ -39,19 +45,22 @@ const SinglePost = ({ deletePost }) => {
       setPost(result.data);
       if (result.data.puplisher._id == state.reducerLog.user._id) {
         setIsPuplisher(true);
+   
       }
-      getAll();
     } catch (error) {
       console.log(error);
     }
   };
 
+//comment 
   useEffect(() => {
-    getAll();
-  }, []);
+    getAllComments();
+  }, [post]);
 
-  const getAll = async () => {
+
+  const getAllComments = async () => {
     try {
+      console.log("Got it");
       const result = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/comments/${post._id}`,
         {
@@ -60,9 +69,31 @@ const SinglePost = ({ deletePost }) => {
           },
         }
       );
+      console.log(result.status);
+      if (result.status == 201) {
+        setComments(result.data);
+        console.log("Got it");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-      setComments(result.data);
-      console.log(result.data);
+  const addComment = async (e) => {
+    try {
+      const result = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/comment/${post._id}`,
+        { discription },
+        {
+          headers: {
+            Authorization: `Bearer ${state.reducerLog.token}`,
+          },
+        }
+  
+      );
+      setComment(result.data);
+      getAllComments();
+
     } catch (error) {
       console.log(error);
     }
@@ -84,13 +115,30 @@ const SinglePost = ({ deletePost }) => {
             )}
           </h1>
           <h3>{post && post.discription}</h3>
-          <Comments
-            getPost={getPost}
-            comments={comments}
-            setComments={setComments}
-            getAll={getAll}
-            post={post && post}
-          />
+          <div className="comments">
+            {comments &&comments.map((elem) => <div key={elem._id}>
+                {/* {elem && elem.discription} */}
+                <Comment getAllComments={getAllComments} getPost={getPost} elem={elem} />
+                
+                </div>)
+             }
+            <input
+            className="addComment"
+              type="text"
+              placeholder="Add comments.."
+              onChange={(e) => setDiscription(e.target.value)}
+            
+            />
+            <MdAdd
+                     className="unlike"
+              onClick={(e) => {
+                e.preventDefault();
+   
+                addComment(e);
+            
+              }}
+            />
+          </div>
 
           <p className="date">{post && post.Date}</p>
         </div>
