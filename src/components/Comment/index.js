@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {TiDeleteOutline} from"react-icons/ti"
 import "./style.css"
 const Comment = ({elem, getPost,getAllComments}) => {
+  const [isPuplisher, setIsPuplisher]=useState(false)
+  const [isAdmin, setIsAdmin]=useState(false)
     const state = useSelector((state) => {
         return {
           reducerLog: state.reducerLog,
@@ -11,7 +13,31 @@ const Comment = ({elem, getPost,getAllComments}) => {
       });
       useEffect(() => {
         getPost();
-      }, []);
+      }, [elem]);
+
+
+
+      const deleCommentAdmin=async(_id)=>{
+ console.log(_id);
+        try {
+          const result = await axios.put(
+            `${process.env.REACT_APP_BASE_URL}/anyCommentOrpost`,
+            {_id},
+            {
+              headers: {
+                Authorization: `Bearer ${state.reducerLog.token}`,
+              },
+            }
+          );
+    
+          // getPost()
+          getAllComments()
+   } catch (error) {
+       console.log(error);
+   }
+    }
+
+
     const deleComment=async()=>{
  
         try {
@@ -29,14 +55,28 @@ const Comment = ({elem, getPost,getAllComments}) => {
    } catch (error) {
        console.log(error);
    }
-     
     }
+
+    useEffect(() => {
+      check()
+    }, [])
+  
+  const check =()=>{
+    if (elem.puplisher._id ==state.reducerLog.user._id){
+      setIsPuplisher(true)
+    }
+    if(state.reducerLog.role !== "61a744e5313b1e7127be4634"){
+      setIsAdmin(true)
+      console.log("admin");
+    }
+   
+  }
     return (
         <div className="commentContainer">
            
             <h1 className="user">{elem.puplisher.userName}:</h1> <span className="comment">{elem.discription}</span>
-            <TiDeleteOutline className="unlike" onClick={deleComment}/>
-            
+            {isPuplisher? <TiDeleteOutline className="unlike" onClick={deleComment}/>:""}
+            {isAdmin? <TiDeleteOutline className="unlike" onClick={()=>deleCommentAdmin(elem._id)}/>:""}
         </div>
     )
 }

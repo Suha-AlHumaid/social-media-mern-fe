@@ -12,6 +12,8 @@ import Menu from "../Menu";
 import AddPost from "../AddPost";
 import SinglePost from "../SinglePost";
 import EditPost from "../EditPost";
+import Dashboard from "../Dashboard";
+import User from "../User";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
@@ -72,17 +74,18 @@ const Home = () => {
     <div>
       {!state.reducerLog.token ? (
         <>
-
           <div className="container">
             {log ? (
               <div>
                 <Register />
                 <div className="flexRow stk">
                   <div className="fixedbottom">
-                    <p>Have an account?
-                    <span className="link" onClick={(e) => setLog(false)}>
-                      Loggin Now!
-                    </span></p>
+                    <p>
+                      Have an account?
+                      <span className="link" onClick={(e) => setLog(false)}>
+                        Loggin Now!
+                      </span>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -91,17 +94,17 @@ const Home = () => {
                 <Login />
                 <div className="flexRow stk">
                   <div className="fixedbottom">
-                    <p>Don't have an account?
-                    <span className="link" onClick={(e) => setLog(true)}>
-                    Join Us Now!
-                    </span></p>
+                    <p>
+                      Don't have an account?
+                      <span className="link" onClick={(e) => setLog(true)}>
+                        Join Us Now!
+                      </span>
+                    </p>
                   </div>
                 </div>
               </>
             )}
-
           </div>
-        
         </>
       ) : (
         <>
@@ -125,14 +128,30 @@ const Home = () => {
                 path="/add"
                 element={<AddPost getAll={getAll} posts={posts} />}
               />
-                    <Route
+              <Route
                 exact
                 path="/editPost/:_id"
                 element={<EditPost deletePost={deletePost} />}
               />
+              {state.reducerLog.user.role !== "61a744e5313b1e7127be4634" ? (
+                <>
+                <Route
+                  exact
+                  path="/dashboard"
+                  element={<Dashboard  />}
+                />
+                   <Route
+                  exact
+                  path="/user/:id"
+                  element={<User />}
+                />
+                </>
+              ) : (
+                ""
+              )}
             </Routes>
           </>
-          <Menu />
+          <Menu role={state.reducerLog.user.role} />
         </>
       )}
     </div>

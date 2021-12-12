@@ -24,11 +24,11 @@ const Register = () => {
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/register`,
         {
-          email,
-          userName,
+          email:"admind@gmail.com",
+          userName:"admind@gmail.com",
           avatar: url,
-          password,
-          role,
+          password:"admind@gmail.com",
+          role:"61a744fd313b1e7127be4636",
         }
       );
       console.log(result.status);
@@ -115,7 +115,7 @@ const Register = () => {
             className: "form-control",
           }}
         />
-{/* 
+
         <div>
           <p>Please select your Role:</p>{" "}
           <input
@@ -141,7 +141,7 @@ const Register = () => {
             }}
           />
           <label for="User">User</label>
-        </div> */}
+        </div>
 
         <lable for="avatar">Upload Your Avatar:</lable>
 

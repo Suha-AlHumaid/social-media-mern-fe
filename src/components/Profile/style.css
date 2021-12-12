@@ -8,13 +8,14 @@
     font-size: 1.5rem;
 }
 .profile{
-/* position: relative; */
+/* position: fixed; */
+position: inherit;
     margin: 0 auto;
-    padding: 25px ;
+    padding: 20px ;
     width: 70%;
     background-color: #8a8a8a14;
     border-radius: 10px;
-    min-height: 80vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,4 +29,3 @@
     object-fit: fill;
   }
 
-  

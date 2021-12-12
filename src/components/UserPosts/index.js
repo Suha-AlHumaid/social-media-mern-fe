@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import axios from "axios";
-import Post from "../Post";
 import "./style.css";
 
+import Post from "../Post";
 const UserPosts = () => {
   const [posts, setPosts] = useState([]);
   const state = useSelector((state) => {
@@ -27,7 +27,7 @@ const UserPosts = () => {
           },
         }
       );
-      // setTasks(result.data);
+
       console.log(result.data);
       setPosts(result.data);
     } catch (error) {
