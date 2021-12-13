@@ -57,7 +57,7 @@ A social Media app with login and registration  system, comment and communicate 
 
 # UML Diagram
 
-## ![alt text]()
+## ![uml](https://github.com/Suha-AlHumaid/W09D05/blob/main/uml.jpg)
 
 # Server / Backend
 # Social Media Apis With Auths
