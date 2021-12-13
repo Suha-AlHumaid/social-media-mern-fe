@@ -116,3 +116,25 @@ img {
   height: 30%;
   object-fit: fill;
 } */
+@media screen and (max-width: 480px) {
+  .container{
+    width: 100%;
+  }
+  .fixedheader {
+    width: 100%;
+  }
+  .fixedbottom {
+    width: 100%;
+  }
+}
+@media screen and (max-width:1200px) {
+  .container{
+    width: 80%;
+  }
+  .fixedheader {
+    width: 80%;
+  }
+  .fixedbottom {
+    width: 80%;
+  }
+}
