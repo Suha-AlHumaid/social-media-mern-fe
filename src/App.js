@@ -17,6 +17,7 @@ import ForgetPassword from "./components/ForgetPassword";
 import { useNavigate } from "react-router-dom";
 import PasswordReset from "./components/PasswordReset"
 import "./style.css"
+import Verfy from "./components/Verfy";
 const App = () => {
   const [log, setLog] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -137,6 +138,11 @@ console.log(state.reducerLog);
             exact
             path="/passwordreset/:id/:tokenmail"
             element={<PasswordReset />}
+          />
+          <Route
+            exact
+            path="/verfy/:token2"
+            element={<Verfy />}
           />
         </Routes>
       ) : (
