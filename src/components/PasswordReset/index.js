@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { useParams } from 'react-router'
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
-
+import PasswordChecklist from "react-password-checklist"
 const PasswordReset = () => {
 const [password, setPassword] = useState("initialState")
 const [message, setMessage] = useState("");
@@ -47,7 +47,28 @@ console.log(result.data);
         <div className="container">
             <div className="form">
             <input className="input" type="password" onChange={(e)=>setPassword(e.target.value)}/>
-            <button  className="submit" onClick={ resetPassword}>Rset Password</button>
+            <PasswordChecklist
+            rules={[
+              `minLength`,
+              `specialChar`,
+              `number`,
+              `capital`,
+              `lowercase`,
+            ]}
+            className="dark"
+            minLength={8}
+            value={password}
+            onChange={(isValid) => {
+              if (isValid) {
+                const button = document.querySelector(`#signupSubmitButton`);
+                button.disabled = false;
+              } else {
+                const button = document.querySelector(`#signupSubmitButton`);
+                button.disabled = true;
+              }
+            }}
+            />
+            <button id="signupSubmitButton"  className="submit" onClick={ resetPassword}>Rset Password</button>
             <h1 className="user">{message? message: ""}</h1>
             </div>
         </div>

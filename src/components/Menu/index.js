@@ -6,7 +6,7 @@ import { MdExplore, MdHome, MdAddBox , MdPerson,MdAdminPanelSettings} from "reac
 const Menu = ({isAdmin ,check}) => {
   useEffect(() => {
     check()
-  }, [isAdmin])
+  }, [])
   return (
     <div className="flexRow stk">
       <div className="fixedbottom">
@@ -26,7 +26,7 @@ const Menu = ({isAdmin ,check}) => {
         </div>
         {isAdmin? <div > 
           <Link className="divIcon" to="/dashboard">Dashboard< MdAdminPanelSettings className="icon" /></Link>
-        </div>:""}
+        </div>:" "}
       </div>
     </div>
   );

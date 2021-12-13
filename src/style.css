@@ -107,7 +107,9 @@ img {
   font-size: 2.8rem;
   color: #18242c;
 }
-
+.dark{
+  color: #18242c;
+}
 /* #avatar {
   border-radius: 40%;
   width: 60%;

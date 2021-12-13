@@ -115,6 +115,7 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error.response);
+
       // if (error.response.status == 403) {
       //   setMessage("varified your email");
       // } else {
@@ -166,6 +167,7 @@ const Login = () => {
       <button className="submit" onClick={login}>
         Submit
       </button>
+      <p className="dark" >{message? message:""}</p>
       <p
         className="darkLink"
         onClick={(e) => {
@@ -176,6 +178,7 @@ const Login = () => {
         Log in with Gmail
       </p>
       <p
+
         onClick={(e) => {
           e.preventDefault();
           forgotasswordNav();
