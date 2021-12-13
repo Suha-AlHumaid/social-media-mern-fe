@@ -1,5 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import "./style.css";
+import { Link, useNavigate ,useParams} from "react-router-dom";
 const Verfy = () => {
     const {token2} = useParams()
     // /verify/:token
@@ -12,22 +15,12 @@ const Verfy = () => {
     useEffect(() => {
         verify()
       }, )
-    // const state = useSelector((state) => {
-    //   return {
-    //     reducerLog: state.reducerLog,
-    //   };
-    // });
-  
+
     const verify = async () => {
       try {
         const result = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/verify/${token2}`,
-      
-          {
-            headers: {
-              Authorization: `Bearer ${state.reducerLog.token}`,
-            },
-          }
+          `${process.env.REACT_APP_BASE_URL}/verify/${token2}`
+    
         );
         setMessage(result.data);
       } catch (error) {
