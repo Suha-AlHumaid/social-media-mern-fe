@@ -101,7 +101,7 @@ const Register = () => {
           placeholder="Email .."
           onChange={(e) => setEmail(e.target.value)}
         />
-        <ReactPasswordStrength
+        {/* <ReactPasswordStrength
           required
           className="input"
           style={{ width:`75%` }}
@@ -114,7 +114,13 @@ const Register = () => {
             autoComplete: "off",
             className: "form-control",
           }}
-        />
+        /> */}
+              <input
+       className="input" placeholder="Password..." 
+        type="password"
+      
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
         <div>
           <p>Please select your Role:</p>{" "}
@@ -147,7 +153,6 @@ const Register = () => {
 
         <div className="uplaod">
           <label className="custom-file-upload">
-            {" "}
             Choose Photo
             <input type="file" onChange={handleChange} />
           </label>

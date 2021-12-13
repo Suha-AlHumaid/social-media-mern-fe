@@ -13,8 +13,9 @@ import AddPost from "../AddPost";
 import SinglePost from "../SinglePost";
 import EditPost from "../EditPost";
 import Dashboard from "../Dashboard";
-import User from "../User";
+import ForgetPassword from "../ForgetPassword";
 import { useNavigate } from "react-router-dom";
+
 import "./style.css";
 
 const Home = () => {
@@ -76,15 +77,17 @@ const Home = () => {
   const check = () => {
     const storageUser = localStorage.getItem("user")
     const userStorage= JSON.parse(storageUser)
-
+if(userStorage){
     if (userStorage.role !== "61a744e5313b1e7127be4634") {
       setIsAdmin(true);
       console.log("admin");
     }
+  }
   };
   return (
     <div>
       {!state.reducerLog.token ? (
+            
         <>
           <div className="container">
             {log ? (
@@ -114,9 +117,11 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
+                   
               </>
             )}
           </div>
+
         </>
       ) : (
         <>
@@ -125,10 +130,10 @@ const Home = () => {
             <Routes>
               <Route
                 exact
-                path="/"
+                path="/explore"
                 element={<Explore posts={posts} getAll={getAll} />}
               />
-              <Route exact path="/home" element={<UserPosts />} />
+              <Route exact path="/" element={<UserPosts />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route
                 exact
@@ -152,11 +157,7 @@ const Home = () => {
                   path="/dashboard"
                   element={<Dashboard  />}
                 />
-                   <Route
-                  exact
-                  path="/user/:id"
-                  element={<User />}
-                />
+
                 </>
               ) : (
                 ""

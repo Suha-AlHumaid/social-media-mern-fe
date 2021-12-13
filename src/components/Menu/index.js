@@ -8,11 +8,11 @@ const Menu = ({isAdmin}) => {
     <div className="flexRow stk">
       <div className="fixedbottom">
         <div>
-          <Link className="divIcon"to="/home">Home< MdHome  className="icon" /></Link> 
+          <Link className="divIcon"to="/">Home< MdHome  className="icon" /></Link> 
           </div>
 
           <div >
-          <Link className="divIcon" to="/">Explore<MdExplore className="icon" /></Link> 
+          <Link className="divIcon" to="/explore">Explore<MdExplore className="icon" /></Link> 
         </div>
 
         <div >

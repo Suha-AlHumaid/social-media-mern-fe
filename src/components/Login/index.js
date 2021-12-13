@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { login1 } from "../../Reducers/login";
+import { useNavigate } from "react-router";
 import "./style.css";
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ const Login = () => {
   const [userName, setUserName] = useState("");
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const navigator =useNavigate()
   const state = useSelector((state) => {
     return {
       reducerLog: state.reducerLog,
@@ -17,12 +19,7 @@ const Login = () => {
   });
 
   const login = async () => {
-    // setMessage("");
-    // if (val.includes("@")){
-    //     setEmail(val)
-    // }else {
-    //     setUserName(val)
-    // }
+
     try {
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/login`,
@@ -45,13 +42,19 @@ console.log(result.data);
       }else {
         setMessage("wrong email or password");
       }
-      // setMessage("faild");
+   
     }
+  };
+
+  // forgotpassword
+
+  const forgotasswordNav = async () => {
+    navigator("/forgetPassword")
   };
 
   return (
     <div className="form">
-      {/* <h1 className="heading">Login To Your Account</h1> */}
+
       <h1 className="logoHome">𝐼𝓃𝓈𝓉𝒶𝑔𝓇𝒶𝓂𝒾</h1>
       <input className="input" placeholder="Email..." type="text" onChange={(e) => setEmail(e.target.value)} />
       
@@ -64,7 +67,7 @@ console.log(result.data);
       <p>{message ? message : ""}</p>
       <button className="submit" onClick={login}>Submit</button>
       <p className="darkLink">Log in with Gmail</p>
-      <p className="darkLink">Forget password?</p>
+      <p onClick={forgotasswordNav} className="darkLink">Forget password?</p>
     </div>
   );
 };
