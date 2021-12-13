@@ -86,8 +86,9 @@ console.log(state.reducerLog);
   };
   return (
     <div>
-  
+   <Header check={check} />
       {!state.reducerLog.token ? (
+        
         <Routes>
           <Route
             exact
@@ -140,7 +141,7 @@ console.log(state.reducerLog);
         </Routes>
       ) : (
         <>
-          <Header check={check} />
+          {/* <Header check={check} /> */}
           <>
             <Routes>
               <Route
