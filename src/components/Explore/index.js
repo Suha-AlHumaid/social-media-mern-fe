@@ -4,6 +4,9 @@ import axios from "axios";
 import Post from "../Post";
 import "./style.css";
 const Explore = ({ posts, getAll }) => {
+  useEffect(() => {
+    getAll()
+  }, [])
   return (
     <div className="container">
     <div className="reverseCol full">

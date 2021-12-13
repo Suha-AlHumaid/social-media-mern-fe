@@ -1,7 +1,10 @@
-import React from "react";
+import React ,{ useEffect}from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
-const Header = () => {
+const Header = ({check}) => {
+  useEffect(() => {
+    check()
+  }, [])
   return (
     <div className="flexRow stk">
       <div className="fixedheader">

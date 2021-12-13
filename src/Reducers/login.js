@@ -1,4 +1,6 @@
 // Define an initial state value for the app
+
+
 const initialState = {
     user: null,
     token: "",
@@ -7,6 +9,7 @@ const initialState = {
   // Create a "reducer" function that determines what the new state
   // should be when something happens in the app
   const reducerLog = (state = initialState, action) => {
+    
     const { type, payload } = action;
     // Reducers usually look at the type of action that happened
     // to decide how to update the state
@@ -20,7 +23,7 @@ const initialState = {
       case "LOGOUT":
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        return {payload: state} ;
+        return { payload };
 
       default:
         const storageToken = localStorage.getItem("token")

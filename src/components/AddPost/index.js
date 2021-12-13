@@ -40,7 +40,7 @@ const AddPost = ({ getAll, posts }) => {
       setPost(result.data);
 
       getAll();
-      navigate("/home");
+      navigate("/posts");
     } catch (error) {
       console.log(error);
     }

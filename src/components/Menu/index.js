@@ -1,14 +1,17 @@
-import React from "react";
+import React ,{ useEffect}from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { MdExplore, MdHome, MdAddBox , MdPerson,MdAdminPanelSettings} from "react-icons/md";
 
-const Menu = ({isAdmin}) => {
+const Menu = ({isAdmin ,check}) => {
+  useEffect(() => {
+    check()
+  }, [isAdmin])
   return (
     <div className="flexRow stk">
       <div className="fixedbottom">
         <div>
-          <Link className="divIcon"to="/">Home< MdHome  className="icon" /></Link> 
+          <Link className="divIcon"to="/posts">Home< MdHome  className="icon" /></Link> 
           </div>
 
           <div >

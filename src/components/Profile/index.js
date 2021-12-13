@@ -1,15 +1,18 @@
 import React,{useState,useEffect} from "react";
 import { logOut } from "../../Reducers/login";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import "./style.css"
 import {MdLogout,MdEdit} from "react-icons/md"
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const navigate= useNavigate()
   const[user , setUser]=useState(null)
 
   const logout = () => {
     dispatch(logOut({ user: null, token: "" }));
+    navigate("/")
   };
   // const state = useSelector((state) => {
   //   return {
