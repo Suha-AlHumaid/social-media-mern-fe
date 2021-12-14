@@ -20,7 +20,7 @@ const Likes = ({ id }) => {
     }
   };
 
-  return <h1 className="like">{likes.length}</h1>;
+  return <h1 className="unlike">{likes.length}</h1>;
 };
 
 export default Likes;

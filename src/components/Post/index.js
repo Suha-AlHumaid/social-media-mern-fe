@@ -98,7 +98,7 @@ const Post = ({ elem, getAll }) => {
       <div className="txt">
         <h1 className="user">
           {elem.puplisher.userName}
-          <IoMdHeart onClick={toggle} className={isLike ? "like" : "unlike"} /> <Likes id={elem._id}/>
+          <IoMdHeart onClick={toggle} className={isLike ? "like" : "unlike"} /> 
           {isPuplisher ? (
             <MdEdit
               onClick={() => navigate(`/editPost/${elem._id}`)}
