@@ -10,7 +10,7 @@ import Likes from "../Likes";
 
 const Post = ({ elem, getAll }) => {
   const navigate = useNavigate();
-  const [isLike, setlike] = useState(false);
+  const [isPuplisher1, setIsPuplisher1] = useState("0");
   const [isPuplisher, setIsPuplisher] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const dispatch = useDispatch();
@@ -45,6 +45,7 @@ const Post = ({ elem, getAll }) => {
   useEffect(() => {
     check();
   }, []);
+  
   const check = () => {
     const storageUser = localStorage.getItem("user")
     const userStorage= JSON.parse(storageUser)
@@ -60,34 +61,29 @@ const Post = ({ elem, getAll }) => {
     }
   };
 
-  const toggle = async () => {
+  const [isLike, setlike] = useState(false);
+  const [likes, setLikes] = useState([]);
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    likesCount();
+  }, [count]);
+
+  const likesCount = async () => {
     try {
-      const result = await axios.put(
-        `${process.env.REACT_APP_BASE_URL}/like/${elem._id}`,
-        {
-          isLike:!isLike,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${state.reducerLog.token}`,
-          },
-        }
+      const result = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/likes/${elem._id}`
       );
       console.log(result.data);
-      console.log(result.status);
-      if (result.status === 200) {
-        setlike(result.data.isLike);
+      if (result.data) {
+        setLikes(result.data);
+        setCount(result.data.length);
+        getAll();
       }
     } catch (error) {
       console.log(error.response);
-      if (error.response.status == 403) {
-        setMessage("varified your email");
-      } else {
-        setMessage("wrong email or password");
-      }
-      // setMessage("faild");
     }
   };
+
   return (
     <div className="full">
       <img
@@ -97,8 +93,8 @@ const Post = ({ elem, getAll }) => {
       />
       <div className="txt">
         <h1 className="user">
-          {elem.puplisher.userName}
-          <IoMdHeart onClick={toggle} className={isLike ? "like" : "unlike"} /> 
+          {elem.puplisher.userName} <Likes id={elem._id} count={count} isLike={isLike} likesCount={likesCount}/>
+          
           {isPuplisher ? (
             <MdEdit
               onClick={() => navigate(`/editPost/${elem._id}`)}
