@@ -12,7 +12,7 @@ const Explore = ({ posts, getAll }) => {
     <div className="reverseCol full">
       {posts && posts.length
         ? posts.map((elem) => <Post getAll={getAll} key={elem._id} elem={elem} />)
-        : "cc"}
+        : <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Ajux_loader.gif"  id="laoding"/>}
     </div>
     </div>
   );

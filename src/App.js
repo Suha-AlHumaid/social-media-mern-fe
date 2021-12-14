@@ -145,17 +145,18 @@ console.log(state.reducerLog);
             path="/verfy/:token2"
             element={<Verfy />}
           />
+
         </Routes>
       ) : (
         <>
           {/* <Header check={check} /> */}
           <>
             <Routes>
-            {/* <Route
-            exact
-            path="/likes/:id"
-            element={<Likes />}
-          /> */}
+            <Route
+                exact
+                path="/explore"
+                element={<Explore posts={posts} getAll={getAll} />}
+              />
               <Route
                 exact
                 path="/explore"
