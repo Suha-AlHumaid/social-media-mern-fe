@@ -128,7 +128,7 @@ navigator("/explore")
 
 
       <GoogleLogin
-    clientId="426069343336-3odhdvec6q2o8qnlck1pakcrncrpas01.apps.googleusercontent.com"
+    clientId="426069343336-cgcpjsch5km1dielkaskjv6iqjrqfu47.apps.googleusercontent.com"
     buttonText="Login With Google"
     onSuccess={responseSuccessGoogle}
     onFailure={responseErrorGoogle}
