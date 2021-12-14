@@ -65,7 +65,7 @@ const Post = ({ elem, getAll }) => {
       const result = await axios.put(
         `${process.env.REACT_APP_BASE_URL}/like/${elem._id}`,
         {
-          isLike,
+          isLike:!isLike,
         },
         {
           headers: {
@@ -76,7 +76,7 @@ const Post = ({ elem, getAll }) => {
       console.log(result.data);
       console.log(result.status);
       if (result.status === 200) {
-        setlike(!isLike);
+        setlike(result.data.isLike);
       }
     } catch (error) {
       console.log(error.response);
