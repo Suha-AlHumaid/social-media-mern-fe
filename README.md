@@ -24,8 +24,11 @@ A social Media app with login and registration  system, comment and communicate 
 - Admin can delete any user with posts and comment relative to that user
 - Admin can show all users
 
----
 
+# Plan:
+By useing trello: (https://trello.com/b/GNVnCf83/social-media)
+
+---
 # Client / Frontend
 
 ## React Router Routes (React App)
