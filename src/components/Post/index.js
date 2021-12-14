@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { IoMdHeart } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
+import Likes from "../Likes";
 
 const Post = ({ elem, getAll }) => {
   const navigate = useNavigate();
@@ -97,7 +98,7 @@ const Post = ({ elem, getAll }) => {
       <div className="txt">
         <h1 className="user">
           {elem.puplisher.userName}
-          <IoMdHeart onClick={toggle} className={isLike ? "like" : "unlike"} />
+          <IoMdHeart onClick={toggle} className={isLike ? "like" : "unlike"} /> <Likes id={elem._id}/>
           {isPuplisher ? (
             <MdEdit
               onClick={() => navigate(`/editPost/${elem._id}`)}

@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import PasswordReset from "./components/PasswordReset"
 import "./style.css"
 import Verfy from "./components/Verfy";
+import Likes from "./components/Likes";
 const App = () => {
   const [log, setLog] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -150,6 +151,11 @@ console.log(state.reducerLog);
           {/* <Header check={check} /> */}
           <>
             <Routes>
+            {/* <Route
+            exact
+            path="/likes/:id"
+            element={<Likes />}
+          /> */}
               <Route
                 exact
                 path="/explore"

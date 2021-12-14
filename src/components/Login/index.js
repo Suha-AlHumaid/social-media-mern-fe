@@ -128,6 +128,7 @@ navigator("/explore")
 
 
       <GoogleLogin
+      
     clientId="426069343336-4qrce5u8on7li4kht6rtprfj9sfcikkk.apps.googleusercontent.com"
     buttonText="Login With Google"
     onSuccess={responseSuccessGoogle}
