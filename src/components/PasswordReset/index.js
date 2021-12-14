@@ -46,6 +46,7 @@ console.log(result.data);
     return (
         <div className="container">
             <div className="form">
+              <h1 className="heading">Enter new your password</h1>
             <input className="input" type="password" onChange={(e)=>setPassword(e.target.value)}/>
             <PasswordChecklist
             rules={[
