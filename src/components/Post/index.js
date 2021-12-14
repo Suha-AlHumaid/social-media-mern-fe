@@ -10,7 +10,8 @@ import Likes from "../Likes";
 
 const Post = ({ elem, getAll }) => {
   const navigate = useNavigate();
-  const [isPuplisher1, setIsPuplisher1] = useState("0");
+
+  
   const [isPuplisher, setIsPuplisher] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const Post = ({ elem, getAll }) => {
 
   useEffect(() => {
     check();
-  }, []);
+  }, [elem]);
   
   const check = () => {
     const storageUser = localStorage.getItem("user")

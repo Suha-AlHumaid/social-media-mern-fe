@@ -10,6 +10,7 @@ import "./style.css";
 
 const SinglePost = () => {
   const { _id } = useParams(); //post id
+  console.log("_id",_id);
   const [post, setPost] = useState(null);
   const [isPuplisher, setIsPuplisher] = useState(false);
   const [discription, setDiscription] = useState([]);
@@ -104,20 +105,23 @@ const SinglePost = () => {
         }
   
       );
+      console.log(result.data);
       setComment(result.data);
       getAllComments();
 
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
+
   return (
     <div className="container">
       <div className="full">
         <img src={post && post.avatar} alt={post && post._id} />
         <div className="txt">
           <h1 className="user">
-            {post && post.puplisher.userName} <IoMdHeart className="unlike" />
+            {post && post.puplisher.userName} 
+            {/* <IoMdHeart className="unlike" /> */}
             {isPuplisher ? (
               <MdEdit
                 onClick={() => navigate(`/editPost/${post._id}`)}
@@ -131,7 +135,7 @@ const SinglePost = () => {
           <div className="comments">
             {comments &&comments.map((elem) => <div key={elem._id}>
                 {/* {elem && elem.discription} */}
-                <Comment getAllComments={getAllComments} getPost={getPost} elem={elem} />
+                <Comment getAllComments={getAllComments} getPost={getPost} elem={elem} isPostPuplisher={isPuplisher}/>
                 
                 </div>)
              }

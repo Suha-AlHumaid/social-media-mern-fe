@@ -16,6 +16,8 @@ const Likes = ({ id, setMessage, getAll }) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
     likesCount();
+    const user1 = localStorage.getItem("user")
+    const user =JSON.parse(user1)
   }, [count]);
 
   const likesCount = async () => {
@@ -23,11 +25,15 @@ const Likes = ({ id, setMessage, getAll }) => {
       const result = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/likes/${id}`
       );
-      console.log(result.data);
+      console.log("likes",result.data);
       if (result.data) {
         setLikes(result.data);
         setCount(result.data.length);
+ 
+    
+
         getAll();
+    
       }
     } catch (error) {
       console.log(error.response);
@@ -62,6 +68,7 @@ const Likes = ({ id, setMessage, getAll }) => {
 
     }
   };
+
   return (
     <>
      <p className="unlike">

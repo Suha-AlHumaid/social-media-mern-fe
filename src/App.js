@@ -30,7 +30,7 @@ const App = () => {
       reducerLog: state.reducerLog,
     };
   });
-console.log(state.reducerLog);
+
   useEffect(() => {
     getAll();
   }, []);
