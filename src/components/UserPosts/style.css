@@ -1,7 +1,7 @@
 .reverseCol {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: center;
   align-items: flex-start;
  
