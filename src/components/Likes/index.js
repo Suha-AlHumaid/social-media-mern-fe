@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useStore } from "react-redux";
-import { Routes, Route } from "react-router-dom";
-import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 import { IoMdHeart } from "react-icons/io";
 import axios from "axios";
 
@@ -16,8 +14,8 @@ const Likes = ({ id, setMessage, getAll }) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
     likesCount();
-    const user1 = localStorage.getItem("user")
-    const user =JSON.parse(user1)
+    const user1 = localStorage.getItem("user");
+    const user = JSON.parse(user1);
   }, [count]);
 
   const likesCount = async () => {
@@ -25,15 +23,12 @@ const Likes = ({ id, setMessage, getAll }) => {
       const result = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/likes/${id}`
       );
-      console.log("likes",result.data);
+      console.log("likes", result.data);
       if (result.data) {
         setLikes(result.data);
         setCount(result.data.length);
- 
-    
 
         getAll();
-    
       }
     } catch (error) {
       console.log(error.response);
@@ -65,18 +60,18 @@ const Likes = ({ id, setMessage, getAll }) => {
       } else {
         setMessage("wrong email or password");
       }
-
     }
   };
 
   return (
     <>
-     <p className="unlike">
-      <IoMdHeart
-        onClick={() => toggle(id)}
-        className={isLike ? "like" : "unlike"}
-      />
-       {count}</p>
+      <p className="unlike">
+        <IoMdHeart
+          onClick={() => toggle(id)}
+          className={isLike ? "like" : "unlike"}
+        />
+        {count}
+      </p>
     </>
   );
 };

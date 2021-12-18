@@ -15,8 +15,8 @@ import EditPost from "./components/EditPost";
 import Dashboard from "./components/Dashboard";
 import ForgetPassword from "./components/ForgetPassword";
 import { useNavigate } from "react-router-dom";
-import PasswordReset from "./components/PasswordReset"
-import "./style.css"
+import PasswordReset from "./components/PasswordReset";
+import "./style.css";
 import Verify from "./components/Verify";
 import Likes from "./components/Likes";
 const App = () => {
@@ -73,7 +73,6 @@ const App = () => {
     }
   };
   useEffect(() => {
-    
     check();
   }, []);
   const check = () => {
@@ -88,9 +87,8 @@ const App = () => {
   };
   return (
     <div>
-   <Header check={check} />
+      <Header check={check} />
       {!state.reducerLog.token ? (
-        
         <Routes>
           <Route
             exact
@@ -140,23 +138,12 @@ const App = () => {
             path="/passwordreset/:id/:tokenmail"
             element={<PasswordReset />}
           />
-          <Route
-            exact
-            path="/Verify/:token2"
-            element={<Verify />}
-          />
-
+          <Route exact path="/Verify/:token2" element={<Verify />} />
         </Routes>
       ) : (
         <>
-          {/* <Header check={check} /> */}
           <>
             <Routes>
-            {/* <Route
-                exact
-                path="/explore"
-                element={<Explore posts={posts} getAll={getAll} />}
-              /> */}
               <Route
                 exact
                 path="/explore"
@@ -191,7 +178,6 @@ const App = () => {
           <Menu isAdmin={isAdmin} check={check} />
         </>
       )}
-
     </div>
   );
 };

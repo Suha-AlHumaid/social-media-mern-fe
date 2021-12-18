@@ -3,15 +3,13 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { login1 } from "../../Reducers/login";
 import { useNavigate } from "react-router";
-import GoogleLogin from 'react-google-login';
-
+import GoogleLogin from "react-google-login";
 import "./style.css";
+
 const Login = () => {
   const popupTools = require("popup-tools");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const [userName, setUserName] = useState("");
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const navigator = useNavigate();
@@ -36,7 +34,7 @@ const Login = () => {
         dispatch(
           login1({ user: result.data.result, token: result.data.token })
         );
-        navigator("/explore")
+        navigator("/explore");
       }
     } catch (error) {
       console.log(error.response);
@@ -54,43 +52,49 @@ const Login = () => {
   const forgotasswordNav = async () => {
     navigator("/forgetPassword");
   };
+
   //google AuthO
-  const oAuth = () => {
-    popupTools.popup(
-      `${process.env.REACT_APP_BASE_URL}/auth/google`,
-      "Logging in with Google",
-      { width: 500, height: 500 },
-      (err, user) => {
-        if (err) {
-          console.log("caughton error:", err.message);
-        } else {
-          console.log(user);
-          dispatch(login1({ token: user.token, user: user.result }));
-          navigator("/explore");
-        }
-      }
-    );
+  // const oAuth = () => {
+  //   popupTools.popup(
+  //     `${process.env.REACT_APP_BASE_URL}/auth/google`,
+  //     "Logging in with Google",
+  //     { width: 500, height: 500 },
+  //     (err, user) => {
+  //       if (err) {
+  //         console.log("caughton error:", err.message);
+  //       } else {
+  //         console.log(user);
+  //         dispatch(login1({ token: user.token, user: user.result }));
+  //         navigator("/explore");
+  //       }
+  //     }
+  //   );
+  // };
+
+  const responseSuccessGoogle = (response) => {
+    console.log("google", response);
+    console.log("google", response.tokenId);
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/googleLoggin`, {
+        tokenId: response.tokenId,
+      })
+      .then((result) => {
+        console.log("responseSuccessGoogle", result);
+        console.log("user", result.data.result);
+
+        console.log("token", result.data.token);
+        dispatch(
+          login1({ user: result.data.result, token: result.data.token })
+        );
+        navigator("/explore");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
-  const responseSuccessGoogle=(response)=>{
-console.log("google",response);
-console.log("google",response.tokenId);
-axios.post(`${process.env.REACT_APP_BASE_URL}/googleLoggin`,{tokenId: response.tokenId}).then(result=>{
-console.log("responseSuccessGoogle",result);
-console.log("user",result.data.result);
-
-console.log("token",result.data.token);
-dispatch(
-  login1({ user: result.data.result, token: result.data.token })
-);
-navigator("/explore")
-}).catch(error=>{
-  console.log(error);
-})
-  }
-  const responseErrorGoogle=(response)=>{
-    console.log(response); 
-  }
+  const responseErrorGoogle = (response) => {
+    console.log(response);
+  };
 
   return (
     <div className="form">
@@ -108,39 +112,24 @@ navigator("/explore")
         type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <br/>
-     <p className="red" >{message? message:""}</p>
+      <br />
+      <p className="red">{message ? message : ""}</p>
       <button className="submit" onClick={login}>
         Submit
       </button>
-   
-      {/* <p
-        className="darkLink"
-        onClick={(e) => {
-          e.preventDefault();
-          oAuth();
-        }}
-      >
-        Log in with Gmail
-      </p> */}
 
-
-
-<br/>
+      <br />
 
       <GoogleLogin
-      
-    clientId="426069343336-4qrce5u8on7li4kht6rtprfj9sfcikkk.apps.googleusercontent.com"
-    buttonText="Login With Google"
-    onSuccess={responseSuccessGoogle}
-    onFailure={responseErrorGoogle}
-    cookiePolicy={'single_host_origin'}
-  />
+        clientId="426069343336-4qrce5u8on7li4kht6rtprfj9sfcikkk.apps.googleusercontent.com"
+        buttonText="Login With Gamil"
+        onSuccess={responseSuccessGoogle}
+        onFailure={responseErrorGoogle}
+        cookiePolicy={"single_host_origin"}
+      />
 
-
-<br/>
+      <br />
       <p
-
         onClick={(e) => {
           e.preventDefault();
           forgotasswordNav();

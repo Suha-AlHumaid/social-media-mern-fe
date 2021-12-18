@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./style.css";
-import { Link, useNavigate ,useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const EditPost = ({ getAll, posts ,deletePost}) => {
-const {_id}= useParams()
+const EditPost = ({ deletePost }) => {
+  const { _id } = useParams();
   const [discription, setDiscription] = useState("");
   const [title, setTitle] = useState("");
   const [post, setPost] = useState(null);
@@ -35,43 +35,45 @@ const {_id}= useParams()
       setPost(result.data);
       navigate(`/singlePost/${_id}`);
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 
   return (
     <div className="container">
+      <div className="form">
+        <h1 className="heading">Edit POST </h1>
+        <input
+          className="input"
+          placeholder="Title.."
+          onChange={(e) => setTitle(e.target.value)}
+          type="text"
+        />
+        <textarea
+          required
+          rows="4"
+          className="input"
+          placeholder="Discription..."
+          onChange={(e) => setDiscription(e.target.value)}
+          type="text"
+        />
 
-    <div className="form">
-      <h1 className="heading">Edit POST </h1>
-      <input
-      className="input"
-        placeholder="Title.."
-        onChange={(e) => setTitle(e.target.value)}
-        type="text"
-      />
-      <textarea
-      required
-      rows="4"
-        className="input"
-        placeholder="Discription..."
-        onChange={(e) => setDiscription(e.target.value)}
-        type="text"
-      />
-
-      <button className="submit" onClick={editPostFunc}> Done </button>
-      <br/>
-      <button className="submit" onClick={()=>{
-          deletePost(_id)}}> Delete </button>
-      {/* <Link
-        to={{
-          pathname: "/",
-          state: { posts },
-        }}
-      >
-        explore
-      </Link> */}
-    </div></div>
+        <button className="submit" onClick={editPostFunc}>
+          {" "}
+          Done{" "}
+        </button>
+        <br />
+        <button
+          className="submit"
+          onClick={() => {
+            deletePost(_id);
+          }}
+        >
+          {" "}
+          Delete{" "}
+        </button>
+      </div>
+    </div>
   );
 };
 

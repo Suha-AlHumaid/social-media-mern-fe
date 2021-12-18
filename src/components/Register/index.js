@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import PasswordChecklist from "react-password-checklist"
+import PasswordChecklist from "react-password-checklist";
 import { storage } from "../firebase";
 import "./style.css";
 const Register = () => {
@@ -9,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [strongPassword, setStrongPassword] = useState("");
   const [role, setRole] = useState("61a744e5313b1e7127be4634");
-      // role:"61a744fd313b1e7127be4636",
+  // role:"61a744fd313b1e7127be4636",
   const [message, setMessage] = useState("");
   const [avatar, setAvatar] = useState("");
   const [url, setUrl] = useState(
@@ -17,12 +17,10 @@ const Register = () => {
   );
 
   const [progress, setProgress] = useState(0);
-  const [code,setCode] = useState("");
+  const [code, setCode] = useState("");
   const register = async () => {
     setMessage("");
     try {
-
-
       const result = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/register`,
         {
@@ -68,14 +66,10 @@ const Register = () => {
           .getDownloadURL()
           .then((url) => {
             setUrl(url);
-      
           });
       }
     );
   };
-
-
-
 
   return (
     <div>
@@ -86,7 +80,6 @@ const Register = () => {
           register();
         }}
       >
-
         <h1 className="logoHome">𝐼𝓃𝓈𝓉𝒶𝑔𝓇𝒶𝓂𝒾</h1>
         <input
           className="input"
@@ -103,63 +96,32 @@ const Register = () => {
           placeholder="Email .."
           onChange={(e) => setEmail(e.target.value)}
         />
-   
-              <input
-       className="input" placeholder="Password..." 
-        type="password"
-      
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <PasswordChecklist
-            rules={[
-              `minLength`,
-              `specialChar`,
-              `number`,
-              `capital`,
-              `lowercase`,
-            ]}
-            className="dark"
-            minLength={8}
-            value={password}
-            onChange={(isValid) => {
-              if (isValid) {
-                const button = document.querySelector(`#signupSubmitButton`);
-                button.disabled = false;
-              } else {
-                const button = document.querySelector(`#signupSubmitButton`);
-                button.disabled = true;
-              }
-            }}
-            />
 
-        {/* <div>
-          <p>Please select your Role:</p>{" "}
-          <input
-            type="radio"
-            id="Admin"
-            name="role"
-            value="61a744fd313b1e7127be4636"
-            onChange={(e) => {
-              e.preventDefault();
-              setRole("61a744fd313b1e7127be4636");
-            }}
-          />
-          <label for="Admin">Admin</label>{" "}
-          <input
-            required
-            type="radio"
-            id="User"
-            name="role"
-            value="61a744e5313b1e7127be4634"
-            onChange={(e) => {
-              e.preventDefault();
-              setRole("61a744e5313b1e7127be4634");
-            }}
-          />
-          <label for="User">User</label>
-        </div> */}
+        <input
+          className="input"
+          placeholder="Password..."
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <PasswordChecklist
+          rules={[`minLength`, `specialChar`, `number`, `capital`, `lowercase`]}
+          className="dark"
+          minLength={8}
+          value={password}
+          onChange={(isValid) => {
+            if (isValid) {
+              const button = document.querySelector(`#signupSubmitButton`);
+              button.disabled = false;
+            } else {
+              const button = document.querySelector(`#signupSubmitButton`);
+              button.disabled = true;
+            }
+          }}
+        />
 
-        <lable for="avatar" className="dark">Upload Your Avatar:</lable>
+        <lable for="avatar" className="dark">
+          Upload Your Avatar:
+        </lable>
 
         <div className="uplaod">
           <label className="custom-file-upload">
@@ -174,16 +136,15 @@ const Register = () => {
         </div>
 
         <p className="red"> {message ? message : ""}</p>
-   <button className="submit" id="signupSubmitButton">Register</button>
-     
+        <button className="submit" id="signupSubmitButton">
+          Register
+        </button>
       </form>
-
     </div>
   );
 };
 
 export default Register;
-
 
 // {message.includes(", Check your email please!")? <div>
 //         <p className="dark">Enter the access code</p>

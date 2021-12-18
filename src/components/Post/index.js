@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { IoMdHeart } from "react-icons/io";
+import { useSelector } from "react-redux";
+
 import { MdEdit } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
 import Likes from "../Likes";
@@ -11,10 +11,8 @@ import Likes from "../Likes";
 const Post = ({ elem, getAll }) => {
   const navigate = useNavigate();
 
-  
   const [isPuplisher, setIsPuplisher] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const dispatch = useDispatch();
   const [message, setMessage] = useState("");
 
   const state = useSelector((state) => {
@@ -42,14 +40,13 @@ const Post = ({ elem, getAll }) => {
     }
   };
 
-
   useEffect(() => {
     check();
   }, [elem]);
-  
+
   const check = () => {
-    const storageUser = localStorage.getItem("user")
-    const userStorage= JSON.parse(storageUser)
+    const storageUser = localStorage.getItem("user");
+    const userStorage = JSON.parse(storageUser);
 
     console.log(userStorage);
     if (elem.puplisher._id == userStorage._id) {
@@ -94,8 +91,13 @@ const Post = ({ elem, getAll }) => {
       />
       <div className="txt">
         <h1 className="user">
-          {elem.puplisher.userName} <Likes id={elem._id} count={count} isLike={isLike} likesCount={likesCount}/>
-          
+          {elem.puplisher.userName}{" "}
+          <Likes
+            id={elem._id}
+            count={count}
+            isLike={isLike}
+            likesCount={likesCount}
+          />
           {isPuplisher ? (
             <MdEdit
               onClick={() => navigate(`/editPost/${elem._id}`)}

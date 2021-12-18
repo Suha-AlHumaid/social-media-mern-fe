@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { MdExplore, MdHome, MdAddBox , MdPerson,MdAdminPanelSettings} from "react-icons/md";
 
 const Menu = ({isAdmin ,check}) => {
+  
   useEffect(() => {
     check()
   }, [])

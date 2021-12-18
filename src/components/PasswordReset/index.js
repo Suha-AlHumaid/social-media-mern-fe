@@ -29,8 +29,6 @@ const PasswordReset = () => {
           },
         }
       );
-      // console.log(result.status);
-      // console.log(result.data);
       if (result.status === 200) {
         setMessage("password change successfully");
         dispatch(
@@ -43,7 +41,6 @@ const PasswordReset = () => {
       if (error.response.status == 403) {
         setMessage("something wrong");
       }
-      // setMessage("faild");
     }
   };
   return (
