@@ -31,6 +31,7 @@ By useing trello: (https://trello.com/b/GNVnCf83/social-media)
 # Screenshots
 
 ## ![Login Page](https://github.com/Suha-AlHumaid/W09D05/blob/main/img/img1.png)
+## ![Explore Page](https://github.com/Suha-AlHumaid/W09D05/blob/main/img/img2.png)
 ## ![Explore Page](https://github.com/Suha-AlHumaid/W09D05/blob/main/img/img3.png)
 
 ---
