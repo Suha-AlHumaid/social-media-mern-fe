@@ -41,11 +41,11 @@ const Login = () => {
     } catch (error) {
       console.log(error.response);
 
-      // if (error.response.status == 403) {
-      //   setMessage("varified your email");
-      // } else {
-      //   setMessage("wrong email or password");
-      // }
+      if (error.response.status == 403) {
+        setMessage("Please, Varified your email");
+      } else {
+        setMessage("Please, Enter invalid email or password");
+      }
     }
   };
 
@@ -108,11 +108,12 @@ navigator("/explore")
         type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <p>{message ? message : ""}</p>
+      <br/>
+     <p className="red" >{message? message:""}</p>
       <button className="submit" onClick={login}>
         Submit
       </button>
-      <p className="dark" >{message? message:""}</p>
+   
       {/* <p
         className="darkLink"
         onClick={(e) => {
@@ -125,7 +126,7 @@ navigator("/explore")
 
 
 
-
+<br/>
 
       <GoogleLogin
       
@@ -137,9 +138,7 @@ navigator("/explore")
   />
 
 
-
-
-
+<br/>
       <p
 
         onClick={(e) => {
@@ -148,7 +147,7 @@ navigator("/explore")
         }}
         className="darkLink"
       >
-        Forget password?
+        Forget your password?
       </p>
     </div>
   );

@@ -6,3 +6,8 @@
   align-items: flex-start;
  
 }
+.headingWhite{
+  font-size: 1.5rem;
+  color: rgb(53, 53, 53);
+  margin: 0 auto;
+}

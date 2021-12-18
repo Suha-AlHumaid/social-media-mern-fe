@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css"
+import { Link } from 'react-router-dom';
 const ForgetPassword = () => {
 const [email, setEmail] = useState("initialState")
 const [message, setMessage] = useState("");
@@ -36,14 +37,14 @@ console.log(result.status);
       }
     } catch (error) {
       console.log(error.response);
-      if(error.response.status== 403) {
-        setMessage("There is no email sign up please!");
+      if(error.response.status== 403||error.response.status== 404) {
+        setMessage("Your email is not regestered yet.");
         
       }else {
         // setMessage("There is no email, sign up please!");
-        setMessage("We Send email with link to reset your password, Check your Spam or Bulk Mail folders.");
+        setMessage("We Send email with link to reset your password. Check your spam or bulk mail folders.");
       }
-      // setMessage("faild");
+   
     }
   };
     return (
@@ -51,7 +52,11 @@ console.log(result.status);
             <div className="form">
             <h1 className="heading">Enter your current email ! </h1>
             <input className="input" placeholder="Enter email..." type="text" onChange={(e)=>setEmail(e.target.value)}/>
-           <div className="txxt"><p className="dark">{message? message: ""}</p></div> 
+           <div className="txxt"><p className="red">{message? message: ""}</p>
+           <br/>
+           {message.includes("Your email is not regestered yet.")? <Link className="link" to="/">Sign Up</Link> :""}
+           </div> 
+           <br/>
             <button  className="submit" onClick={ forgotpasswordNav}>Send To my Email</button>
          
             

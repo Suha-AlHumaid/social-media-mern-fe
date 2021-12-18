@@ -17,7 +17,7 @@ import ForgetPassword from "./components/ForgetPassword";
 import { useNavigate } from "react-router-dom";
 import PasswordReset from "./components/PasswordReset"
 import "./style.css"
-import Verfy from "./components/Verfy";
+import Verify from "./components/Verify";
 import Likes from "./components/Likes";
 const App = () => {
   const [log, setLog] = useState(false);
@@ -142,8 +142,8 @@ const App = () => {
           />
           <Route
             exact
-            path="/verfy/:token2"
-            element={<Verfy />}
+            path="/Verify/:token2"
+            element={<Verify />}
           />
 
         </Routes>
@@ -152,11 +152,11 @@ const App = () => {
           {/* <Header check={check} /> */}
           <>
             <Routes>
-            <Route
+            {/* <Route
                 exact
                 path="/explore"
                 element={<Explore posts={posts} getAll={getAll} />}
-              />
+              /> */}
               <Route
                 exact
                 path="/explore"

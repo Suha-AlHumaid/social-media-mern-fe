@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import "./style.css";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { storage } from "../firebase";
 const AddPost = ({ getAll, posts }) => {
   // /post
@@ -77,35 +77,41 @@ const AddPost = ({ getAll, posts }) => {
 
   return (
     <div className="container">
+      <div className="form">
+        <h1 className="heading">ADD POST </h1>
+        <input
+          className="input"
+          placeholder="Title.."
+          onChange={(e) => setTitle(e.target.value)}
+          type="text"
+        />
+        <textarea
+          required
+          rows="4"
+          className="input"
+          placeholder="Discription..."
+          onChange={(e) => setDiscription(e.target.value)}
+          type="text"
+        />
 
-    <div className="form">
-      <h1 className="heading">ADD POST </h1>
-      <input
-      className="input"
-        placeholder="Title.."
-        onChange={(e) => setTitle(e.target.value)}
-        type="text"
-      />
-      <textarea
-      required
-      rows="4"
-        className="input"
-        placeholder="Discription..."
-        onChange={(e) => setDiscription(e.target.value)}
-        type="text"
-      />
+        <div className="uplaod">
+          <label className="custom-file-upload">
+            {" "}
+            Choose Photo
+            <input type="file" onChange={handleChange} />
+          </label>
 
-      <div className="uplaod">
-        <label className="custom-file-upload"> Choose Photo
-        <input type="file" onChange={handleChange} /></label>
-    
-          <button className="custom-file-upload" onClick={handleUpload}>Upload</button>
+          <button className="custom-file-upload" onClick={handleUpload}>
+            Upload
+          </button>
           <progress value={progress} max="100" />
-       
-      </div>
+        </div>
 
-      <button className="submit" onClick={AddPostFunc}> Done </button>
-      {/* <Link
+        <button className="submit" onClick={AddPostFunc}>
+          {" "}
+          Done{" "}
+        </button>
+        {/* <Link
         to={{
           pathname: "/",
           state: { posts },
@@ -113,7 +119,8 @@ const AddPost = ({ getAll, posts }) => {
       >
         explore
       </Link> */}
-    </div></div>
+      </div>
+    </div>
   );
 };
 

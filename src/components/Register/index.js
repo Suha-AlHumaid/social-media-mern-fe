@@ -17,6 +17,7 @@ const Register = () => {
   );
 
   const [progress, setProgress] = useState(0);
+  const [code,setCode] = useState("");
   const register = async () => {
     setMessage("");
     try {
@@ -34,7 +35,7 @@ const Register = () => {
       );
       console.log(result.status);
       if (result.status === 201) {
-        setMessage(result.data.message + "check your email please");
+        setMessage(result.data.message + ", Check your email please!");
       }
     } catch (error) {
       setMessage("Registeration Faild");
@@ -72,6 +73,10 @@ const Register = () => {
       }
     );
   };
+
+
+
+
   return (
     <div>
       <form
@@ -168,11 +173,22 @@ const Register = () => {
           <progress value={progress} max="100" />
         </div>
 
-       <p className="dark"> {message ? message : ""}</p>
-        <button className="submit" id="signupSubmitButton">Register</button>
+        <p className="red"> {message ? message : ""}</p>
+   <button className="submit" id="signupSubmitButton">Register</button>
+     
       </form>
+
     </div>
   );
 };
 
 export default Register;
+
+
+// {message.includes(", Check your email please!")? <div>
+//         <p className="dark">Enter the access code</p>
+//         <input    className="input"
+//           required type="text" onChange={(e) => setCode(e.target.value) }/>
+//         <button className="submit" >Enter Code</button>
+//       </div>: <button className="submit" id="signupSubmitButton">Register</button>}
+//       <p className="dark"> {message ? message : ""}</p>
